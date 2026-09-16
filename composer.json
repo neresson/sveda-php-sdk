@@ -4,6 +4,18 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["veda", "ai", "copilot", "sdk", "client"],
+    "homepage": "https://github.com/neresson/veda-client",
+    "authors": [
+        {
+            "name": "Neresson",
+            "homepage": "https://github.com/neresson",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/neresson/veda-client/issues",
+        "source": "https://github.com/neresson/veda-client"
+    },
     "require": {
         "php": "^8.4",
         "guzzlehttp/guzzle": "^7.9",
@@ -25,7 +37,5 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    }
 }

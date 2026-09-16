@@ -4,24 +4,8 @@ Framework-agnostic PHP SDK for the [Veda AI](https://github.com/neresson/veda) s
 
 ## Install
 
-Until the package is on Packagist, require it from GitHub:
-
 ```bash
-composer config repositories.veda-client vcs https://github.com/neresson/veda-client.git
-composer require veda-ai/client:dev-main
-```
-
-Or in `composer.json`:
-
-```json
-{
-  "repositories": [
-    { "type": "vcs", "url": "https://github.com/neresson/veda-client.git" }
-  ],
-  "require": {
-    "veda-ai/client": "dev-main"
-  }
-}
+composer require veda-ai/client
 ```
 
 ## Usage
