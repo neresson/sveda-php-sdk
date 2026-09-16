@@ -1,0 +1,31 @@
+{
+    "name": "veda-ai/client",
+    "description": "PHP SDK for the Veda AI sidecar HTTP API (embed tokens, streaming chat, histories).",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["veda", "ai", "copilot", "sdk", "client"],
+    "require": {
+        "php": "^8.4",
+        "guzzlehttp/guzzle": "^7.9",
+        "psr/http-client": "^1.0",
+        "psr/http-message": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0 || ^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Veda\\Client\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Veda\\Client\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
