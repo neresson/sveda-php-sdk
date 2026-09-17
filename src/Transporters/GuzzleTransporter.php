@@ -1,16 +1,16 @@
 <?php
 
-namespace Veda\Client\Transporters;
+namespace Sveda\Client\Transporters;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Veda\Client\Contracts\Transporter;
-use Veda\Client\Exceptions\AuthenticationException;
-use Veda\Client\Exceptions\ErrorException;
-use Veda\Client\Exceptions\TransporterException;
-use Veda\Client\Exceptions\UnserializableResponse;
+use Sveda\Client\Contracts\Transporter;
+use Sveda\Client\Exceptions\AuthenticationException;
+use Sveda\Client\Exceptions\ErrorException;
+use Sveda\Client\Exceptions\TransporterException;
+use Sveda\Client\Exceptions\UnserializableResponse;
 
 final class GuzzleTransporter implements Transporter
 {
@@ -53,7 +53,7 @@ final class GuzzleTransporter implements Transporter
             'json' => $payload,
             'stream' => true,
             'headers' => $this->mergeHeaders($headers, [
-                'Accept' => 'application/vnd.veda.stream+json',
+                'Accept' => 'application/vnd.sveda.stream+json',
                 'Content-Type' => 'application/json',
             ]),
         ]);
@@ -119,7 +119,7 @@ final class GuzzleTransporter implements Transporter
         $body = (string) $response->getBody();
 
         if ($status === 401 || $status === 403) {
-            throw new AuthenticationException('Veda API authentication failed with status '.$status);
+            throw new AuthenticationException('Sveda API authentication failed with status '.$status);
         }
 
         if ($status < 200 || $status >= 300) {
@@ -128,7 +128,7 @@ final class GuzzleTransporter implements Transporter
             throw new ErrorException(
                 is_array($decoded) && isset($decoded['message']) && is_string($decoded['message'])
                     ? $decoded['message']
-                    : 'Veda API request failed with status '.$status,
+                    : 'Sveda API request failed with status '.$status,
                 $status,
                 is_array($decoded) ? $decoded : null,
             );
@@ -140,7 +140,7 @@ final class GuzzleTransporter implements Transporter
 
         $decoded = json_decode($body, true);
         if (! is_array($decoded)) {
-            throw new UnserializableResponse('Unable to decode Veda API response as JSON.');
+            throw new UnserializableResponse('Unable to decode Sveda API response as JSON.');
         }
 
         return $decoded;

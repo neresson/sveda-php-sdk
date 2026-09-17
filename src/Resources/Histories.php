@@ -1,8 +1,8 @@
 <?php
 
-namespace Veda\Client\Resources;
+namespace Sveda\Client\Resources;
 
-use Veda\Client\Resources\Concerns\Transportable;
+use Sveda\Client\Resources\Concerns\Transportable;
 
 final class Histories
 {
@@ -13,7 +13,7 @@ final class Histories
      */
     public function list(): array
     {
-        return $this->transporter->requestJson('GET', '/veda/chat-histories');
+        return $this->transporter->requestJson('GET', '/sveda/chat-histories');
     }
 
     /**
@@ -23,7 +23,7 @@ final class Histories
     {
         return $this->transporter->requestJson(
             'GET',
-            '/veda/chat-histories/'.rawurlencode($chatId),
+            '/sveda/chat-histories/'.rawurlencode($chatId),
         );
     }
 
@@ -34,7 +34,7 @@ final class Histories
     {
         return $this->transporter->requestJson(
             'PATCH',
-            '/veda/chat-histories/'.rawurlencode($chatId),
+            '/sveda/chat-histories/'.rawurlencode($chatId),
             ['title' => $title],
         );
     }
@@ -46,7 +46,7 @@ final class Histories
     {
         return $this->transporter->requestJson(
             'DELETE',
-            '/veda/chat-histories/'.rawurlencode($chatId),
+            '/sveda/chat-histories/'.rawurlencode($chatId),
         );
     }
 }

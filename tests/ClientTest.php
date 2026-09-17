@@ -1,10 +1,10 @@
 <?php
 
-namespace Veda\Client\Tests;
+namespace Sveda\Client\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Veda\Client\Factory;
+use Sveda\Client\Factory;
 
 final class ClientTest extends TestCase
 {
@@ -12,30 +12,30 @@ final class ClientTest extends TestCase
     public function it_issues_embed_tokens_with_host_credentials(): void
     {
         $transporter = new MockTransporter([
-            'token' => 'veda_embed_test',
+            'token' => 'sveda_embed_test',
             'visitor_id' => 'visitor-1',
             'expires_in' => 3600,
         ]);
 
         $client = Factory::factory()
-            ->withBaseUri('https://veda.test')
+            ->withBaseUri('https://sveda.test')
             ->withHostApiKey('host-secret')
             ->withTransporter($transporter)
             ->make();
 
         $response = $client->embed()->createToken([
             'visitor_id' => 'visitor-1',
-            'host_mcp_url' => 'https://app.test/mcp/veda',
+            'host_mcp_url' => 'https://app.test/mcp/sveda',
             'host_mcp_token' => 'mcp-token',
         ]);
 
-        $this->assertSame('veda_embed_test', $response->token);
+        $this->assertSame('sveda_embed_test', $response->token);
         $this->assertSame('visitor-1', $response->visitorId);
         $this->assertSame(3600, $response->expiresIn);
         $this->assertSame('POST', $transporter->requests[0]['method']);
-        $this->assertSame('/veda/embed/token', $transporter->requests[0]['uri']);
+        $this->assertSame('/sveda/embed/token', $transporter->requests[0]['uri']);
         $this->assertSame('visitor-1', $transporter->requests[0]['payload']['visitor_id']);
-        $this->assertSame('https://app.test/mcp/veda', $transporter->requests[0]['payload']['host_mcp_url']);
+        $this->assertSame('https://app.test/mcp/sveda', $transporter->requests[0]['payload']['host_mcp_url']);
     }
 
     #[Test]
@@ -47,7 +47,7 @@ final class ClientTest extends TestCase
         );
 
         $client = Factory::factory()
-            ->withBaseUri('https://veda.test')
+            ->withBaseUri('https://sveda.test')
             ->withEmbedToken('embed-token')
             ->withTransporter($transporter)
             ->make();
@@ -61,7 +61,7 @@ final class ClientTest extends TestCase
         $this->assertSame('message.start', $events[0]->type);
         $this->assertSame('text.delta', $events[1]->type);
         $this->assertSame('POST', $transporter->requests[0]['method']);
-        $this->assertSame('/veda/stream', $transporter->requests[0]['uri']);
+        $this->assertSame('/sveda/stream', $transporter->requests[0]['uri']);
     }
 
     #[Test]
@@ -69,12 +69,12 @@ final class ClientTest extends TestCase
     {
         $transporter = new MockTransporter(function (string $method, string $uri): array {
             return match (true) {
-                $method === 'POST' && $uri === '/veda/message' => [
+                $method === 'POST' && $uri === '/sveda/message' => [
                     'explanation' => 'Hello',
                     'tokens_used' => 12,
                     'chat_id' => 'chat-1',
                 ],
-                $method === 'GET' && $uri === '/veda/chat-histories' => [
+                $method === 'GET' && $uri === '/sveda/chat-histories' => [
                     'histories' => [],
                 ],
                 default => [],
@@ -82,7 +82,7 @@ final class ClientTest extends TestCase
         });
 
         $client = Factory::factory()
-            ->withBaseUri('https://veda.test')
+            ->withBaseUri('https://sveda.test')
             ->withEmbedToken('embed-token')
             ->withTransporter($transporter)
             ->make();

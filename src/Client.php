@@ -1,12 +1,12 @@
 <?php
 
-namespace Veda\Client;
+namespace Sveda\Client;
 
-use Veda\Client\Contracts\Transporter;
-use Veda\Client\Resources\Chat;
-use Veda\Client\Resources\Documents;
-use Veda\Client\Resources\Embed;
-use Veda\Client\Resources\Histories;
+use Sveda\Client\Contracts\Transporter;
+use Sveda\Client\Resources\Chat;
+use Sveda\Client\Resources\Documents;
+use Sveda\Client\Resources\Embed;
+use Sveda\Client\Resources\Histories;
 
 final class Client
 {

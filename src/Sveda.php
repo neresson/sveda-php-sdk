@@ -1,8 +1,8 @@
 <?php
 
-namespace Veda\Client;
+namespace Sveda\Client;
 
-final class Veda
+final class Sveda
 {
     public static function factory(): Factory
     {

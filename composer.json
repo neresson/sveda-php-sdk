@@ -1,10 +1,10 @@
 {
-    "name": "veda-ai/client",
-    "description": "PHP SDK for the Veda AI sidecar HTTP API (embed tokens, streaming chat, histories).",
+    "name": "sveda-ai/php-sdk",
+    "description": "PHP SDK for the Sveda AI sidecar HTTP API (embed tokens, streaming chat, histories).",
     "type": "library",
     "license": "MIT",
-    "keywords": ["veda", "ai", "copilot", "sdk", "client"],
-    "homepage": "https://github.com/neresson/veda-client",
+    "keywords": ["sveda", "ai", "copilot", "sdk", "client"],
+    "homepage": "https://github.com/neresson/sveda-php-sdk",
     "authors": [
         {
             "name": "Neresson",
@@ -13,8 +13,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/neresson/veda-client/issues",
-        "source": "https://github.com/neresson/veda-client"
+        "issues": "https://github.com/neresson/sveda-php-sdk/issues",
+        "source": "https://github.com/neresson/sveda-php-sdk"
     },
     "require": {
         "php": "^8.4",
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Veda\\Client\\": "src/"
+            "Sveda\\Client\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Veda\\Client\\Tests\\": "tests/"
+            "Sveda\\Client\\Tests\\": "tests/"
         }
     },
     "config": {

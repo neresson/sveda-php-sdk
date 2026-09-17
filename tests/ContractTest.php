@@ -1,10 +1,10 @@
 <?php
 
-namespace Veda\Client\Tests;
+namespace Sveda\Client\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Veda\Client\Streaming\StreamParser;
+use Sveda\Client\Streaming\StreamParser;
 
 final class ContractTest extends TestCase
 {
@@ -13,7 +13,7 @@ final class ContractTest extends TestCase
      */
     private function contract(): array
     {
-        $path = dirname(__DIR__, 3).'/packages/protocol/contracts/sidecar.v1.json';
+        $path = dirname(__DIR__, 2).'/sveda/packages/protocol/contracts/sidecar.v1.json';
         $this->assertFileExists($path);
 
         $decoded = json_decode((string) file_get_contents($path), true);
@@ -36,13 +36,13 @@ final class ContractTest extends TestCase
     {
         $contract = $this->contract();
         $transporter = new MockTransporter([
-            'token' => 'veda_embed_test',
+            'token' => 'sveda_embed_test',
             'visitor_id' => 'visitor-contract',
             'expires_in' => 3600,
         ]);
 
-        $client = \Veda\Client\Factory::factory()
-            ->withBaseUri('https://veda.test')
+        $client = \Sveda\Client\Factory::factory()
+            ->withBaseUri('https://sveda.test')
             ->withTransporter($transporter)
             ->make();
 

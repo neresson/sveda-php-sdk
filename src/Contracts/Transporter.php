@@ -1,6 +1,6 @@
 <?php
 
-namespace Veda\Client\Contracts;
+namespace Sveda\Client\Contracts;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;

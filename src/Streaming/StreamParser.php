@@ -1,6 +1,6 @@
 <?php
 
-namespace Veda\Client\Streaming;
+namespace Sveda\Client\Streaming;
 
 use Psr\Http\Message\StreamInterface;
 

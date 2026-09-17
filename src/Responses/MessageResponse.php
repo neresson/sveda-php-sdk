@@ -1,6 +1,6 @@
 <?php
 
-namespace Veda\Client\Responses;
+namespace Sveda\Client\Responses;
 
 final readonly class MessageResponse
 {

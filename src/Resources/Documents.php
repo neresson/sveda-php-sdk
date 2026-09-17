@@ -1,10 +1,10 @@
 <?php
 
-namespace Veda\Client\Resources;
+namespace Sveda\Client\Resources;
 
-use Veda\Client\Exceptions\ErrorException;
-use Veda\Client\Exceptions\UnserializableResponse;
-use Veda\Client\Resources\Concerns\Transportable;
+use Sveda\Client\Exceptions\ErrorException;
+use Sveda\Client\Exceptions\UnserializableResponse;
+use Sveda\Client\Resources\Concerns\Transportable;
 
 final class Documents
 {
@@ -29,7 +29,7 @@ final class Documents
             ];
         }
 
-        $response = $this->transporter->requestMultipart('POST', '/veda/documents/extract', $multipart);
+        $response = $this->transporter->requestMultipart('POST', '/sveda/documents/extract', $multipart);
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
 
@@ -39,7 +39,7 @@ final class Documents
             throw new ErrorException(
                 is_array($decoded) && isset($decoded['message']) && is_string($decoded['message'])
                     ? $decoded['message']
-                    : 'Veda document extract failed with status '.$status,
+                    : 'Sveda document extract failed with status '.$status,
                 $status,
                 is_array($decoded) ? $decoded : null,
             );
@@ -47,7 +47,7 @@ final class Documents
 
         $decoded = json_decode($body, true);
         if (! is_array($decoded)) {
-            throw new UnserializableResponse('Unable to decode Veda document extract response.');
+            throw new UnserializableResponse('Unable to decode Sveda document extract response.');
         }
 
         return $decoded;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Veda\Client\Tests;
+namespace Sveda\Client\Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Veda\Client\Streaming\StreamParser;
+use Sveda\Client\Streaming\StreamParser;
 
 final class StreamParserTest extends TestCase
 {

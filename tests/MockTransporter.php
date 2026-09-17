@@ -1,10 +1,10 @@
 <?php
 
-namespace Veda\Client\Tests;
+namespace Sveda\Client\Tests;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Veda\Client\Contracts\Transporter;
+use Sveda\Client\Contracts\Transporter;
 
 final class MockTransporter implements Transporter
 {

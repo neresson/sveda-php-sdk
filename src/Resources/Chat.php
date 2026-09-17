@@ -1,11 +1,11 @@
 <?php
 
-namespace Veda\Client\Resources;
+namespace Sveda\Client\Resources;
 
-use Veda\Client\Resources\Concerns\Transportable;
-use Veda\Client\Responses\MessageResponse;
-use Veda\Client\Streaming\StreamEvent;
-use Veda\Client\Streaming\StreamParser;
+use Sveda\Client\Resources\Concerns\Transportable;
+use Sveda\Client\Responses\MessageResponse;
+use Sveda\Client\Streaming\StreamEvent;
+use Sveda\Client\Streaming\StreamParser;
 
 final class Chat
 {
@@ -16,7 +16,7 @@ final class Chat
      */
     public function create(array $params): MessageResponse
     {
-        $response = $this->transporter->requestJson('POST', '/veda/message', $params);
+        $response = $this->transporter->requestJson('POST', '/sveda/message', $params);
 
         return MessageResponse::fromArray($response);
     }
@@ -27,7 +27,7 @@ final class Chat
      */
     public function createStreamed(array $params): \Generator
     {
-        $stream = $this->transporter->requestStream('POST', '/veda/stream', $params);
+        $stream = $this->transporter->requestStream('POST', '/sveda/stream', $params);
         $parser = new StreamParser;
 
         return $parser->iterate($stream);

@@ -1,10 +1,10 @@
 <?php
 
-namespace Veda\Client;
+namespace Sveda\Client;
 
 use GuzzleHttp\Client as GuzzleClient;
-use Veda\Client\Contracts\Transporter;
-use Veda\Client\Transporters\GuzzleTransporter;
+use Sveda\Client\Contracts\Transporter;
+use Sveda\Client\Transporters\GuzzleTransporter;
 
 final class Factory
 {
@@ -104,7 +104,7 @@ final class Factory
         }
 
         if ($this->embedToken !== null) {
-            $headers['X-Veda-Embed-Token'] = $this->embedToken;
+            $headers['X-Sveda-Embed-Token'] = $this->embedToken;
         }
 
         return $headers;

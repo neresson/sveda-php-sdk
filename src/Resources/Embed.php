@@ -1,9 +1,9 @@
 <?php
 
-namespace Veda\Client\Resources;
+namespace Sveda\Client\Resources;
 
-use Veda\Client\Resources\Concerns\Transportable;
-use Veda\Client\Responses\EmbedTokenResponse;
+use Sveda\Client\Resources\Concerns\Transportable;
+use Sveda\Client\Responses\EmbedTokenResponse;
 
 final class Embed
 {
@@ -27,7 +27,7 @@ final class Embed
             $payload['host_mcp_token'] = $params['host_mcp_token'];
         }
 
-        $response = $this->transporter->requestJson('POST', '/veda/embed/token', $payload);
+        $response = $this->transporter->requestJson('POST', '/sveda/embed/token', $payload);
 
         return EmbedTokenResponse::fromArray($response);
     }
@@ -37,6 +37,6 @@ final class Embed
      */
     public function config(): array
     {
-        return $this->transporter->requestJson('GET', '/veda/embed/config');
+        return $this->transporter->requestJson('GET', '/sveda/embed/config');
     }
 }

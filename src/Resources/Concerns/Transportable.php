@@ -1,8 +1,8 @@
 <?php
 
-namespace Veda\Client\Resources\Concerns;
+namespace Sveda\Client\Resources\Concerns;
 
-use Veda\Client\Contracts\Transporter;
+use Sveda\Client\Contracts\Transporter;
 
 trait Transportable
 {

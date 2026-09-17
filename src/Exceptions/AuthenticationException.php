@@ -1,6 +1,6 @@
 <?php
 
-namespace Veda\Client\Exceptions;
+namespace Sveda\Client\Exceptions;
 
 use Exception;
 
