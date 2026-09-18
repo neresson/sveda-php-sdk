@@ -1,6 +1,8 @@
 # sveda-php-sdk
 
-Framework-agnostic PHP SDK for the [Sveda AI](https://github.com/neresson/sveda) sidecar HTTP API.
+Framework-agnostic PHP SDK for the [Sveda](https://sveda.dev) sidecar HTTP API.
+
+Docs: [sveda.dev/docs/hosts/php](https://sveda.dev/docs/hosts/php)
 
 Packagist: `sveda-ai/php-sdk`
 

@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["sveda", "ai", "copilot", "sdk", "client"],
-    "homepage": "https://github.com/neresson/sveda-php-sdk",
+    "homepage": "https://sveda.dev/docs/hosts/php",
     "authors": [
         {
             "name": "Neresson",
@@ -13,6 +13,7 @@
         }
     ],
     "support": {
+        "docs": "https://sveda.dev/docs/hosts/php",
         "issues": "https://github.com/neresson/sveda-php-sdk/issues",
         "source": "https://github.com/neresson/sveda-php-sdk"
     },
