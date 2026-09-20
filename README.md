@@ -68,4 +68,4 @@ Any PSR-ish transport works — implement `Sveda\Client\Contracts\Transporter` a
 
 ## License
 
-MIT
+GNU Affero General Public License v3.0. See [LICENSE](LICENSE).
