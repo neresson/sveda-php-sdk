@@ -36,6 +36,11 @@
             "Sveda\\Client\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "test": "phpunit",
+        "test:contract": "phpunit --exclude-group live",
+        "test:live": "phpunit --group live"
+    },
     "config": {
         "sort-packages": true
     },
