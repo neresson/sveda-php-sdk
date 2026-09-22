@@ -6,7 +6,7 @@ Docs: [sveda.dev/docs/hosts/php](https://sveda.dev/docs/hosts/php)
 
 Packagist: `sveda-ai/php-sdk`
 
-This package is a thin transport client: embed tokens, streaming chat, histories, documents. **AI tools are not defined here** — tools live in your application and are exposed to the sidecar over MCP. On Laravel use [`sveda-ai/laravel-sdk`](https://github.com/neresson/sveda-laravel-sdk), which wires the MCP server for you; anywhere else, point the sidecar at any MCP server you run.
+This package provides the sidecar HTTP client **and** a framework-agnostic host layer: register tools, serve MCP, and dump a `sveda.host/v1` manifest. On Laravel, [`sveda-ai/laravel-sdk`](https://github.com/neresson/sveda-laravel-sdk) adds JsonSchema, Sanctum, and Artisan helpers on top of this client.
 
 ## Install
 
@@ -61,6 +61,44 @@ foreach ($visitor->chat()->createStreamed([
 To proxy the stream to a browser, forward each event as SSE (or buffer deltas and flush) — the events map 1:1 to the sidecar stream contract.
 
 Other resources: `histories()` (list/get chats), `documents()` (text extraction), `embed()->config()` (public sidecar config).
+
+## Host integration (tools + MCP)
+
+Implement `Sveda\Client\Host\Contracts\HostTool`, register tools on `HostManager`, and expose `POST /mcp/sveda`:
+
+```php
+use Sveda\Client\Host\HostManager;
+use Sveda\Client\Host\HostSession;
+use Sveda\Client\Host\Http\HostMcpHttp;
+
+$host = (new HostManager(
+    baseUrl: 'https://sveda.example.com',
+    hostApiKey: $hostKey,
+))
+    ->resolveToolsUsing(fn (?array $user = null) => [/* HostTool instances */])
+    ->policyUsing(fn ($user) => 'agent');
+
+// Mint embed session (includes host_mcp_url + host_mcp_token for the sidecar).
+$session = HostSession::start($host, $user, requestOrigin: 'https://app.example.com');
+
+// MCP endpoint (vanilla PHP front controller):
+$token = HostMcpHttp::readBearerToken();
+$auth = $host->authenticateBearerToken($token);
+if ($auth === null) {
+    http_response_code(401);
+    exit('unauthorized');
+}
+$result = HostMcpHttp::handlePost($host, (string) file_get_contents('php://input'), $auth['user']);
+HostMcpHttp::emit($result);
+```
+
+### Agent introspection
+
+```bash
+vendor/bin/sveda-tools bootstrap/sveda-host.php
+```
+
+`$host->describe($user)` returns JSON manifest `sveda.host/v1` (same tool payloads as MCP `tools/list`).
 
 ## Custom transport
 

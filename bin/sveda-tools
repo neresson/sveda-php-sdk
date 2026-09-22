@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Sveda\Client\Host\HostManager;
+
+if ($argc < 2) {
+    fwrite(STDERR, "usage: sveda-tools path/to/bootstrap.php\n");
+    exit(1);
+}
+
+$bootstrap = $argv[1];
+if (! is_file($bootstrap)) {
+    fwrite(STDERR, "Bootstrap file not found: {$bootstrap}\n");
+    exit(1);
+}
+
+$host = require $bootstrap;
+if (! $host instanceof HostManager) {
+    fwrite(STDERR, "Bootstrap must return a HostManager instance.\n");
+    exit(1);
+}
+
+echo json_encode($host->describe(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
+echo PHP_EOL;
