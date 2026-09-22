@@ -39,6 +39,34 @@ final class ClientTest extends TestCase
     }
 
     #[Test]
+    public function it_forwards_policy_and_grants_on_create_token(): void
+    {
+        $transporter = new MockTransporter([
+            'token' => 'sveda_embed_test',
+            'visitor_id' => 'visitor-1',
+            'expires_in' => 3600,
+        ]);
+
+        $client = Factory::factory()
+            ->withBaseUri('https://sveda.test')
+            ->withHostApiKey('host-secret')
+            ->withTransporter($transporter)
+            ->make();
+
+        $client->embed()->createToken([
+            'visitor_id' => 'visitor-1',
+            'host_mcp_url' => 'https://app.test/mcp/sveda',
+            'host_mcp_token' => 'mcp-token',
+            'policy' => 'reader',
+            'grants' => ['tools' => ['echo_message']],
+        ]);
+
+        $payload = $transporter->requests[0]['payload'];
+        $this->assertSame('reader', $payload['policy']);
+        $this->assertSame(['tools' => ['echo_message']], $payload['grants']);
+    }
+
+    #[Test]
     public function it_streams_chat_events(): void
     {
         $transporter = new MockTransporter(

@@ -10,7 +10,7 @@ final class Embed
     use Transportable;
 
     /**
-     * @param  array{visitor_id?: string, host_mcp_url?: string, host_mcp_token?: string}  $params
+     * @param  array{visitor_id?: string, host_mcp_url?: string, host_mcp_token?: string, policy?: string, grants?: array<string, mixed>}  $params
      */
     public function createToken(array $params = []): EmbedTokenResponse
     {
@@ -25,6 +25,14 @@ final class Embed
             && $params['host_mcp_token'] !== '') {
             $payload['host_mcp_url'] = $params['host_mcp_url'];
             $payload['host_mcp_token'] = $params['host_mcp_token'];
+        }
+
+        if (isset($params['policy']) && $params['policy'] !== '') {
+            $payload['policy'] = $params['policy'];
+        }
+
+        if (isset($params['grants']) && is_array($params['grants'])) {
+            $payload['grants'] = $params['grants'];
         }
 
         $response = $this->transporter->requestJson('POST', '/sveda/embed/token', $payload);
