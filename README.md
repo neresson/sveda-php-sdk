@@ -106,4 +106,4 @@ Any PSR-ish transport works — implement `Sveda\Client\Contracts\Transporter` a
 
 ## License
 
-GNU Affero General Public License v3.0. See [LICENSE](LICENSE).
+Apache License 2.0. See [LICENSE](LICENSE).

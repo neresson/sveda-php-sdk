@@ -2,7 +2,7 @@
     "name": "sveda-ai/php-sdk",
     "description": "Embed a Sveda AI agent from PHP. Docs: https://sveda.dev/docs/hosts/php",
     "type": "library",
-    "license": "AGPL-3.0-only",
+    "license": "Apache-2.0",
     "keywords": ["sveda", "ai", "agent", "copilot", "sdk", "client"],
     "homepage": "https://sveda.dev/docs/hosts/php",
     "authors": [
